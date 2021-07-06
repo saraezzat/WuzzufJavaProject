@@ -1,11 +1,12 @@
 # WuzzufJavaProject
 
-this is a java project using SparkDataframes deliverd to ITI by:
-Ahmed Mohammed Labib  
+This is a java project using SparkDataframes deliverd to ITI by:
+
+## Ahmed Mohammed Labib  
   Group: 07 
   mohamedlabibahmed@gmail.com
   
-Sara Ezzat Abdelhamid 
+## Sara Ezzat Abdelhamid 
   Group: 06
   sara.eezzat.abdelhamid@gmail.com
  
@@ -27,3 +28,10 @@ Sara Ezzat Abdelhamid
 
 Wuzzuf jobs in Egypt data set at Kaggle
 https://www.kaggle.com/omarhanyy/wuzzuf-jobs
+
+Requests:
+==========
+http://localhost:4567/jobs_count
+http://localhost:4567/title_count
+http://localhost:4567/area_count
+http://localhost:4567/skills_count
