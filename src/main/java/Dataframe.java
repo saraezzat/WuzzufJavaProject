@@ -20,13 +20,11 @@ import static spark.Spark.*;
 
 
 public class Dataframe {
+
     private static Map<String, Integer> sortByValue(Map<String, Integer> unsortMap) {
-
-
+        //sort values in a map by descending order
         List<Map.Entry<String, Integer>> list =
                 new LinkedList<Map.Entry<String, Integer>>(unsortMap.entrySet());
-
-
         Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
             public int compare(Map.Entry<String, Integer> o1,
                                Map.Entry<String, Integer> o2) {
@@ -37,37 +35,32 @@ public class Dataframe {
         for (Map.Entry<String, Integer> entry : list) {
             sortedMap.put(entry.getKey(), entry.getValue());
         }
-
         return sortedMap;
     }
-    public static Map<String, Integer> countFrequencies(ArrayList<String> list)
-    {
 
+    public static Map<String, Integer> countFrequencies(ArrayList<String> list)
+    {   //return data as a map of counted keys
         // hash set is created and elements of
         // arraylist are inserted into it
-
         Map<String, Integer> hm = new HashMap<String, Integer>();
         for (String s : list){
             Integer c = hm.get(s);
-            hm.put(s, (c == null) ? 1 : c + 1);
+            hm.put(s, (c == null) ? 1 : c + 1); //add 1 to existing keys and initiate others
     }
         hm=sortByValue(hm);
         return hm;
     }
-    public static HashMap<String, Long> chart_data(List<Row> list)
-    {
 
+    public static HashMap<String, Long> chart_data(List<Row> list)
+    {   // return data in hashmap for charting methods
         // hash set is created and elements of
         // arraylist are inserted into it
-
         HashMap<String, Long> chart_values = new HashMap<String, Long>();
         for(Row s: list.subList(0, 20)){
             String key=s.getString(0);
             Long value=s.getLong(1);
             chart_values.put(key,value);
-
         }
-
         return chart_values;
     }
 
@@ -90,8 +83,8 @@ public class Dataframe {
         df.show(); //display first 20 rows of the dataframe
         //df.schema();
         df.describe(); //display data types of columns
-        df.summary("count").show(); //shw data summary
-        get("/hello", (req, res) -> "Hello World");
+        df.summary("count").show(); //show data summary
+        get("/hello", (req, res) -> "Hello World"); //testing a simple request sample
 
         Dataset<Row> df_clean=df.dropDuplicates(); //drop duplicated rows and save in new dataset df_clean
         df_clean=df_clean.na().drop(); //drop null data in place
@@ -143,7 +136,6 @@ public class Dataframe {
         for(int i=0; i<Skills.size();i++){
             Details_Skills.addAll(Arrays.asList(Skills.get(i).split(","))); //split list elements by "," and turning returned array to a list
         }
-
         for(int i=0;i<Details_Skills.size();i++) {
             Details_Skills.set(i, Details_Skills.get(i).trim().toLowerCase()); //clean data by deleting space and unifying them to lower case to avoid case sensitivity
         }
@@ -152,6 +144,7 @@ public class Dataframe {
         Map<String, Integer> Skills_Value=countFrequencies(Details_Skills); //count how many times a skill shows in a map
         for (Entry m : Skills_Value.entrySet())
             System.out.println("Frequency of " + m.getKey() + " is " + m.getValue()); //display frequency of required skills one by one
+
         //request for showing skill frequency
         get("/skills_count", new Route() {
             @Override
@@ -160,6 +153,7 @@ public class Dataframe {
                 return Skills_Value;
             }
         });
+
         //calling charts methods on results
         Pie_Chart.MakeChart(Jobs_chart);
         Bar_chart.MakeChart(titles_chart);
