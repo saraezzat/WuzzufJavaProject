@@ -7,7 +7,7 @@ Ahmed Mohammed Labib
   
 Sara Ezzat Abdelhamid 
   Group: 06
-  sara.eezzat.abdelhamid
+  sara.eezzat.abdelhamid@gmail.com
  
  Project Requirements:
  ======================
